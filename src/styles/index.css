@@ -1,0 +1,48 @@
+:root {
+  --background-color: #202124;
+  --color: white;
+  --button-color: #9aa0a6;
+  --button-background: rgb(22, 26, 49);
+  --text-color: #e8eaed;
+  --hover-color: #303134;
+  --border-color: #5f6368;
+  --text-color-2: #8ab4f8;
+  --footer-border: #212327;
+  --footer-text: rgba(255, 255, 255, 0.54);
+  --footer-background: #171717;
+
+  /* Typewriter Animation parameters */
+  --animation-bg-color: #101427;
+  --typewriterSpeed: 6s;
+  --typewriterCharacters: 20;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--background-color);
+  position: relative;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.lazy-loading {
+  min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color);
+  font-size: 16px;
+  background-color: var(--background-color);
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+}
