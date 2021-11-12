@@ -1,16 +1,24 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/home.css";
-import { CgMenuGridO } from "react-icons/cg";
+import { CgMenuGridO, CgSearch } from "react-icons/cg";
 import profileIMG from "../images/avenger.jpeg";
 import GoogleLogo from "../images/google-logo.png";
-import { CgSearch } from "react-icons/cg";
 import { BiMicrophone } from "react-icons/bi";
 import { MdClear } from "react-icons/md";
 import { AppContext } from "../utils/Context";
+import CookieNotification from "../components/CookieNotification";
 
 export default function Home() {
   const { clearText, searchText, setSearchText } = useContext(AppContext);
+  let history = useNavigate();
+
+  function handleEnterKey(e) {
+    if (e.key === "Enter") {
+      localStorage.setItem("clone-search-query", searchText);
+      history("/search");
+    }
+  }
 
   return (
     <div className="home-container">
@@ -25,9 +33,11 @@ export default function Home() {
         </div>
       </div>
       <div className="home-div-middle">
-        <img src={GoogleLogo} alt="google logo" />
+        <div className="google-logo">
+          <img src={GoogleLogo} alt="google logo" />
+        </div>
         <div className="search-div">
-          <div className="search-div-icon">
+          <div className="search-div-icon-1">
             <CgSearch />
           </div>
 
@@ -35,6 +45,7 @@ export default function Home() {
             type="text"
             autoFocus
             value={searchText}
+            onKeyPress={e => handleEnterKey(e)}
             onChange={e => setSearchText(e.target.value)}
           />
 
@@ -42,13 +53,19 @@ export default function Home() {
             {clearText && <MdClear onClick={() => setSearchText("")} />}
           </div>
 
-          <div className="search-div-icon">
+          <div className="search-div-icon-2">
             <BiMicrophone />
           </div>
         </div>
         <div className="search-buttons-div">
           <div className="search-buttons-container">
-            <button className="google-search-button">Google Search</button>
+            <button className="google-search-button">
+              {searchText ? (
+                <Link to="/search">Google Search</Link>
+              ) : (
+                <>Google Search</>
+              )}
+            </button>
             <button className="feeling-lucky-button">I'm Feeling Lucky</button>
           </div>
         </div>
@@ -79,6 +96,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <CookieNotification />
     </div>
   );
 }

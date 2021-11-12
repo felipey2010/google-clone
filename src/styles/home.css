@@ -36,8 +36,12 @@
 .home-div-top-right svg {
   width: 24px;
   height: 24px;
-  padding: 8px;
   cursor: pointer;
+}
+
+.home-div-top-right svg:hover {
+  background-color: var(--hover-color);
+  border-radius: 50%;
 }
 
 .profile-image {
@@ -45,12 +49,16 @@
 }
 
 .profile-image img {
-  border: 1px solid white;
+  border: 4px solid var(--background-color);
   width: 34px;
   height: 34px;
   margin: 8px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.profile-image img:hover {
+  border: 4px solid var(--hover-color);
 }
 
 .home-div-middle {
@@ -59,12 +67,17 @@
   align-items: center;
 }
 
+.google-logo {
+  height: 220px;
+  margin-bottom: 20px;
+}
+
 .home-div-middle img {
-  width: 35vw;
+  width: 584px;
 }
 
 .search-div {
-  width: 45vw;
+  width: 584px;
   height: 44px;
   display: flex;
   flex-direction: row;
@@ -81,20 +94,41 @@
   border-color: rgba(223, 225, 229, 0);
 }
 
-.search-div-icon {
+.search-div-icon-1,
+.search-div-icon-2 {
   width: 10%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-.search-div-icon svg {
+.search-div-icon-1 svg,
+.search-div-icon-2 svg {
   height: 24px;
   width: 24px;
   color: var(--button-color);
   padding-left: 4px;
   padding-right: 4px;
+  cursor: pointer;
+}
+
+.search-div-icon-2::after {
+  content: "Search by voice";
+  background-color: var(--background-color);
+  border: 1px solid var(--color);
+  white-space: nowrap;
+  padding: 4px;
+  position: absolute;
+  bottom: -30px;
+  left: -20px;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.search-div-icon-2:hover::after {
+  visibility: visible;
 }
 
 .search-div input {
@@ -169,6 +203,11 @@
   border: 1px solid var(--border-color);
 }
 
+.google-search-button a {
+  text-decoration: none;
+  color: var(--color);
+}
+
 .languages-div {
   display: flex;
   align-items: center;
@@ -186,7 +225,7 @@
 }
 
 .languages-div a:hover {
-  border-bottom: 1px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color-2);
 }
 
 .home-div-bottom {
@@ -242,4 +281,9 @@
 
 .info-section-2 a {
   margin: 15px;
+}
+
+.info-section-1,
+.info-section-2 {
+  padding: 10px;
 }

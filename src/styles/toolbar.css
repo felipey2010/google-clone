@@ -1,0 +1,19 @@
+.toolbar-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 662px;
+  height: 55px;
+}
+
+.toolbar-main a {
+  display: flex;
+  align-items: center;
+  color: var(--button-color);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.toolbar-main p {
+  margin-left: 4px;
+}
