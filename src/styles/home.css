@@ -15,7 +15,7 @@
 }
 
 .home-div-top-right {
-  width: 222px;
+  width: 245px;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -31,6 +31,21 @@
   padding: 12px;
   font-size: 14px;
   font-weight: 400;
+}
+
+.home-div-top-right .login-button {
+  cursor: pointer;
+  height: 10px;
+  border: 1px solid var(--border-color);
+  margin: 6px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  border-radius: 4px;
+}
+
+.home-div-top-right .login-button:hover {
+  background-color: var(--hover-color);
 }
 
 .home-div-top-right svg {

@@ -7,6 +7,7 @@ import AppProvider from "./utils/Context";
 const Home = lazy(() => import("./pages/Home"));
 const Page404 = lazy(() => import("./pages/Page404"));
 const SearchResult = lazy(() => import("./pages/SearchResult"));
+const LoginPage = lazy(() => import("./pages/Login"));
 
 export default function AppRoutes() {
   return (
@@ -16,8 +17,9 @@ export default function AppRoutes() {
           <AppProvider>
             {/* <Loading /> */}
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/search" element={<SearchResult />} />
+              <Route path="/" exact element={<Home />} />
+              <Route path="/search/*" exact element={<SearchResult />} />
+              <Route path="/signin/" element={<LoginPage />} />
               <Route path="*" element={<Page404 />} />
             </Routes>
           </AppProvider>

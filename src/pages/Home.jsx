@@ -10,13 +10,14 @@ import { AppContext } from "../utils/Context";
 import CookieNotification from "../components/CookieNotification";
 
 export default function Home() {
-  const { clearText, searchText, setSearchText } = useContext(AppContext);
+  const { clearText, searchText, setSearchText, signedIn, setSignedIn } =
+    useContext(AppContext);
   let history = useNavigate();
 
   function handleEnterKey(e) {
     if (e.key === "Enter") {
       localStorage.setItem("clone-search-query", searchText);
-      history("/search");
+      history("/search/");
     }
   }
 
@@ -27,9 +28,17 @@ export default function Home() {
           <Link to="/">Gmail</Link>
           <Link to="/">Images</Link>
           <CgMenuGridO />
-          <div className="profile-image">
-            <img src={profileIMG} alt="profile" />
-          </div>
+          {signedIn ? (
+            <div
+              className="profile-image"
+              onClick={() => setSignedIn(!signedIn)}>
+              <img src={profileIMG} alt="profile" />
+            </div>
+          ) : (
+            <Link to="/signin" className="login-button">
+              Sign In
+            </Link>
+          )}
         </div>
       </div>
       <div className="home-div-middle">
@@ -42,6 +51,7 @@ export default function Home() {
           </div>
 
           <input
+            id="search-query"
             type="text"
             autoFocus
             value={searchText}
@@ -61,7 +71,13 @@ export default function Home() {
           <div className="search-buttons-container">
             <button className="google-search-button">
               {searchText ? (
-                <Link to="/search">Google Search</Link>
+                <Link
+                  to="/search/"
+                  onClick={() =>
+                    localStorage.setItem("clone-search-query", searchText)
+                  }>
+                  Google Search
+                </Link>
               ) : (
                 <>Google Search</>
               )}

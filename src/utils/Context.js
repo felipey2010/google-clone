@@ -7,6 +7,7 @@ const AppProvider = ({ children }) => {
   const [searchText, setSearchText] = useState("");
   // const [loading, setLoading] = useState(true);
   const [clearText, setClearText] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
 
   //Loading function
   // function loadPage() {
@@ -40,6 +41,8 @@ const AppProvider = ({ children }) => {
         // loading,
         // setLoading,
         clearText,
+        signedIn,
+        setSignedIn,
       }}>
       {children}
     </AppContext.Provider>

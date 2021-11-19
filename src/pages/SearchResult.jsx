@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Routes, Route } from "react-router-dom";
 import { AppContext } from "../utils/Context";
 import "../styles/searchResult.css";
 import { CgSearch, CgMenuGridO } from "react-icons/cg";
@@ -9,13 +9,23 @@ import { IoSettingsOutline } from "react-icons/io5";
 import profileIMG from "../images/avenger.jpeg";
 import Toolbar from "../components/toolBar";
 
+import AllPage from "./innerPages/allPage";
+import ImagesPage from "./innerPages/imagesPage";
+import VideosPage from "./innerPages/videosPage";
+import NewsPage from "./innerPages/newsPage";
+import ShoppingPage from "./innerPages/shoppingPage";
+import MapsPage from "./innerPages/mapsPage";
+import FinancePage from "./innerPages/financePage";
+import BooksPage from "./innerPages/booksPage";
+
 export default function SearchResult() {
-  const { searchText, clearText, setSearchText } = useContext(AppContext);
+  const { searchText, clearText, setSearchText, signedIn, setSignedIn } =
+    useContext(AppContext);
   const [refreshPage, setRefreshPage] = useState(false);
   let navigate = useNavigate();
 
   function handleEnterKey(key) {
-    if (key === "Enter") {
+    if (key === "Enter" && searchText.length !== 0) {
       reloadPage();
     }
   }
@@ -23,7 +33,7 @@ export default function SearchResult() {
   function reloadPage() {
     localStorage.setItem("clone-search-query", searchText);
     setRefreshPage(true);
-    navigate("/search");
+    navigate("/search/");
     const timeoutId = setTimeout(() => {
       setRefreshPage(false);
     }, 500);
@@ -69,21 +79,39 @@ export default function SearchResult() {
           <div className="settings-icon-2">
             <CgMenuGridO />
           </div>
-          <div className="settings-profile">
-            <img src={profileIMG} alt="profile" />
-          </div>
+          {signedIn ? (
+            <div
+              className="settings-profile"
+              onClick={() => setSignedIn(!signedIn)}>
+              <img src={profileIMG} alt="profile" />
+            </div>
+          ) : (
+            <Link to="/signin" className="login-button">
+              Sign In
+            </Link>
+          )}
         </div>
       </div>
       <div className="search-result-toolbar">
         <Toolbar />
         <div className="search-tool">
-          <p>Tool</p>
+          <p>Tools</p>
         </div>
-        <div className="safe-search">
-          <p>SafeSearch on</p>
-        </div>
+
+        <div className="safe-search">{signedIn && <p>SafeSearch on</p>}</div>
       </div>
-      <div>Content</div>
+      <div className="search-content">
+        <Routes>
+          <Route path="/search" element={<AllPage />} />
+          <Route path="/search/images" element={<ImagesPage />} />
+          <Route path="/search/videos" element={<VideosPage />} />
+          <Route path="/search/news" element={<NewsPage />} />
+          <Route path="/search/shopping" element={<ShoppingPage />} />
+          <Route path="/search/finance" element={<FinancePage />} />
+          <Route path="/search/maps" element={<MapsPage />} />
+          <Route path="/search/books" element={<BooksPage />} />
+        </Routes>
+      </div>
       <div>Footer</div>
     </div>
   );

@@ -4,6 +4,7 @@
   justify-content: space-evenly;
   width: 662px;
   height: 55px;
+  white-space: nowrap;
 }
 
 .toolbar-main a {
@@ -16,4 +17,9 @@
 
 .toolbar-main p {
   margin-left: 4px;
+}
+
+.active-toolbar {
+  border-bottom: 2px solid var(--text-color-2);
+  color: var(--text-color-2);
 }
