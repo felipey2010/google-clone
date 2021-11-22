@@ -8,6 +8,8 @@ const AppProvider = ({ children }) => {
   // const [loading, setLoading] = useState(true);
   const [clearText, setClearText] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
 
   //Loading function
   // function loadPage() {
@@ -43,6 +45,10 @@ const AppProvider = ({ children }) => {
         clearText,
         signedIn,
         setSignedIn,
+        userEmail,
+        setUserEmail,
+        userPassword,
+        setUserPassword,
       }}>
       {children}
     </AppContext.Provider>
