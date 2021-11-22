@@ -10,7 +10,7 @@ import { CgProfile } from "react-icons/cg";
 
 export default function LoginPage() {
   const [loadingBar, setLoadingBar] = useState(false);
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
 
   const { userEmail, userPassword, setUserEmail, setUserPassword } =
