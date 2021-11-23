@@ -11,6 +11,12 @@
   --footer-text: rgba(255, 255, 255, 0.54);
   --footer-background: #171717;
 
+  --text-size-12: 12px;
+  --text-size-14: 14px;
+  --text-size-16: 16px;
+  --text-size-24: 24px;
+  --text-size-32: 32px;
+
   /* Typewriter Animation parameters */
   --animation-bg-color: #101427;
   --typewriterSpeed: 6s;

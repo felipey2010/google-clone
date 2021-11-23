@@ -27,6 +27,14 @@
   margin-bottom: 0px;
 }
 
+.login-main-container .logo-link {
+  background-color: transparent;
+}
+
+.login-main-container .logo-link:hover {
+  background-color: transparent;
+}
+
 .loading-bar-container {
   height: 5px;
   position: abso1lute;
@@ -45,12 +53,13 @@
 
 .login-main-container h2 {
   font-size: 22px;
-  margin: 8px;
+  margin: 20px 0;
   font-weight: 100;
 }
 
 .login-main-container p {
-  font-size: 16px;
+  font-size: var(--text-size-14);
+  word-break: break-all;
 }
 
 .login-input-container {
@@ -58,29 +67,36 @@
   height: 100px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-input-container input {
   height: 54px;
+  width: 370px;
   background-color: transparent;
   border: 1px solid var(--hover-color);
   padding: 0 12px;
-  font-size: 16px;
+  font-size: var(--text-size-16);
   color: white;
   outline: var(--text-color-2);
   margin: 0 15px 0 15px;
   border-radius: 4px;
 }
 
-.login-input-container a {
-  width: fit-content;
+.login-input-container .login-input-forgot-email {
+  width: 450px;
   height: 36px;
-  text-decoration: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.login-input-forgot-email p {
   color: var(--text-color-2);
   font-size: 14px;
-  padding-top: 9px;
-  padding-bottom: 8px;
-  margin: 0 12px 0 12px;
+  margin: 0 12px 0 26px;
+  cursor: pointer;
 }
 
 .learn-more-container {
@@ -88,7 +104,7 @@
   flex-direction: column;
   justify-content: center;
   margin-top: 32px;
-  width: 91%;
+  width: 390px;
   height: 52px;
 }
 
@@ -102,7 +118,7 @@
 .learn-more-container a {
   text-decoration: none;
   color: var(--text-color-2);
-  width: 91%;
+  width: fit-content;
   font-size: 14px;
 }
 
@@ -111,15 +127,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 91%;
+  width: 400px;
   height: 52px;
 }
 
-.login-button-container a {
-  font-size: 14px;
-  text-decoration: none;
-  color: var(--text-color-2);
-}
 .login-button-container button {
   height: 42px;
   width: 80px;
@@ -131,7 +142,8 @@
   transition: all 0.25s;
 }
 
-.login-button-container a {
+.login-button-container p,
+a {
   height: 25px;
   border: 1px solid var(--background-color);
   background-color: transparent;
@@ -140,9 +152,14 @@
   padding: 8px;
   border-radius: 4px;
   transition: all 0.25s;
+  font-size: var(--text-size-14);
+  color: var(--text-color-2);
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.login-button-container a:hover {
+.login-button-container p:hover,
+a:hover {
   /* border: 1px solid var(--border-color); */
   background-color: var(--hover-color);
 }
@@ -221,6 +238,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .password-input-container input {
@@ -233,15 +251,22 @@
 
 .password-input-container .password-text {
   height: 54px;
-  width: 82%;
+  width: 390px;
   background-color: transparent;
   border: 1px solid var(--hover-color);
   padding: 0 12px;
-  font-size: 16px;
+  font-size: var(--text-size-16);
   color: white;
   outline: var(--text-color-2);
   margin: 45px 15px 0px 15px;
   border-radius: 4px;
+}
+
+.password-input-container .label-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .password-input-container label {
@@ -269,12 +294,12 @@
   flex-direction: column;
   width: 100%;
   height: 50px;
-  font-size: 16px;
+  font-size: var(--text-size-16);
   margin-top: 35px;
 }
 
 .inactive-container-1 p {
-  font-size: 16px;
+  font-size: var(--text-size-16);
   margin: 0;
   font-weight: 400;
   letter-spacing: 0.1px;
@@ -304,7 +329,7 @@
   padding: 8px;
   color: var(--color);
   font-family: "Google Sans", Roboto, Arial, sans-serif;
-  font-size: 16px;
+  font-size: var(--text-size-16);
   letter-spacing: 0.0107142857em;
   font-weight: 500;
   cursor: pointer;
@@ -313,4 +338,143 @@
 
 .inactive-container-2 button:hover {
   background-color: var(--hover-color);
+}
+
+.forgot-email-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forgot-email-input input {
+  width: 370px;
+  height: 48px;
+  font-size: var(--text-size-16);
+  background-color: transparent;
+  border: none;
+  margin: 12px;
+  outline: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.forgot-email-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.forgot-email-button button {
+  height: 42px;
+  width: 70px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  margin: 24px;
+  padding: 12px;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: var(--text-size-14);
+}
+
+.forgot-email-button button:hover {
+  background-color: var(--hover-color);
+}
+
+.name-section-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.name-section-container input {
+  width: 370px;
+  height: 48px;
+  font-size: var(--text-size-16);
+  background-color: transparent;
+  border: none;
+  margin: 12px;
+  outline: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.name-section-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.name-section-button button {
+  height: 42px;
+  width: 70px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  margin: 24px;
+  padding: 12px;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: var(--text-size-14);
+}
+
+.name-section-button button:hover {
+  background-color: var(--hover-color);
+}
+
+.random-number {
+  width: 100%;
+  text-align: center;
+}
+
+.random-number p {
+  font-size: var(--text-size-32);
+  font-weight: 700;
+}
+
+.check-phone-1 {
+  width: 100%;
+}
+
+.check-phone-1 p {
+  padding: 0 24px;
+  font-size: var(--text-size-16);
+  margin: 0;
+}
+
+.check-phone-2 {
+  width: 100%;
+}
+
+.check-phone-2 p {
+  font-size: var(--text-size-16);
+  padding: 0 24px;
+  margin: 12px 0;
+}
+
+.forgot-password-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.forgot-password-buttons button {
+  background-color: transparent;
+  color: var(--text-color-2);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0 24px;
+  margin: 12px 0;
+  font-size: var(--text-size-14);
 }

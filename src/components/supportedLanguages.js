@@ -3,7 +3,7 @@
 export default function SelectLanguage() {
   return (
     <select>
-      <option value="en-us">English (United States)</option>
+      <option>English (United States)</option>
       <option value="en-GB">English (British)</option>
       {/* {SupportedLanguages.text.map((language, index) => {
         <option value={language.code} key={index}>
