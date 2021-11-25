@@ -24,7 +24,7 @@
   padding: 12px;
 }
 
-.home-div-top-right a {
+.home-div-top-right .home-link {
   text-decoration: none;
   cursor: pointer;
   color: var(--color);
@@ -44,7 +44,7 @@
   border-radius: 4px;
 }
 
-.home-div-top-right .login-button:hover {
+.home-div-top-right .login-button-a:hover {
   background-color: var(--hover-color);
 }
 
@@ -146,10 +146,10 @@
   visibility: visible;
 }
 
-.search-div input {
+.search-div #search-query {
   width: 80%;
   height: 100%;
-  background-color: transparent;
+  background-color: transparent !important;
   border: none;
   outline: none;
   color: var(--text-color);
@@ -160,6 +160,11 @@
   line-height: normal;
   letter-spacing: normal;
   cursor: text;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
 }
 
 .clear-text-div {
@@ -196,7 +201,8 @@
   max-width: 45vw;
 }
 
-.search-buttons-container button {
+.search-buttons-container .google-search-button,
+.feeling-lucky-button {
   background-color: var(--hover-color);
   border: 1px solid var(--background-color);
   color: var(--color);
@@ -213,12 +219,13 @@
   white-space: pre;
 }
 
-.search-buttons-container button:hover {
+.google-search-button:hover,
+.feeling-lucky-button:hover {
   background-color: var(--hover-color);
   border: 1px solid var(--border-color);
 }
 
-.google-search-button a {
+.google-search-button .search-button-link {
   text-decoration: none;
   color: var(--color);
 }
@@ -229,17 +236,17 @@
   font-size: 13px;
 }
 
-.languages-div p {
+.languages-div .languages-div-p {
   color: var(--button-color);
 }
 
-.languages-div a {
+.languages-div .languages-div-a {
   color: var(--text-color-2);
   text-decoration: none;
   margin-left: 8px;
 }
 
-.languages-div a:hover {
+.languages-div .languages-div-a:hover {
   border-bottom: 1px solid var(--text-color-2);
 }
 
@@ -264,7 +271,7 @@
   align-items: center;
 }
 
-.country-div p {
+.country-div .country-div-p {
   font-size: 14px;
   padding: 15px 30px;
   color: var(--footer-text);
@@ -280,21 +287,21 @@
   background-color: var(--footer-background);
 }
 
-.info-section a {
+.info-section .info-section-a {
   text-decoration: none;
   color: var(--footer-text);
   font-size: 14px;
 }
 
-.info-section a:hover {
+.info-section .info-section-a:hover {
   border-bottom: 1px solid var(--footer-text);
 }
 
-.info-section-1 a {
+.info-section-1 .info-section-1-a {
   margin: 15px;
 }
 
-.info-section-2 a {
+.info-section-2 .info-section-2-a {
   margin: 15px;
 }
 

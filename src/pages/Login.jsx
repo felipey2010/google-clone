@@ -5,17 +5,20 @@ import "../styles/login.css";
 import { BarLoader } from "react-spinners";
 import SelectLanguage from "../components/supportedLanguages";
 import { AppContext } from "../utils/Context";
-import { RiArrowDownSLine } from "react-icons/ri";
-import { CgProfile } from "react-icons/cg";
 import AccountNotFound from "../components/AccountNotFound";
+import PasswordSection from "../components/PasswordSection";
+import EmailSection from "../components/EmailSection";
+import NameSection from "../components/NameSection";
+import ForgotPassword from "../components/ForgotPassword";
+import ForgotPasswordVerification from "../components/ForgotPasswordVerification";
+import InactiveNotification from "../components/InactiveNotification";
+import RecoverySection from "../components/RecoverySection";
 
 export default function LoginPage() {
   const [loadingBar, setLoadingBar] = useState(false);
   const [step, setStep] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
   const [recoveryDetails, setRecoveryDetails] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [passwordRecovery, setPasswordRecovery] = useState("");
   const [randomNumber, setRandomNumber] = useState(0);
 
@@ -98,9 +101,17 @@ export default function LoginPage() {
     checkInactivity();
   }
 
+  function loadDefaultValues() {
+    setUserEmail("");
+    setUserPassword("");
+  }
+
   useEffect(() => {
+    loadDefaultValues();
     loadProgressBar(1500);
     checkInactivity();
+
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -117,152 +128,46 @@ export default function LoginPage() {
 
         {/* Email Section */}
         {step === 0 && (
-          <>
-            <h2>Sign in</h2>
-            <p>Use your Google Account</p>
-            <div className="login-input-container">
-              <input
-                type="text"
-                required
-                placeholder="Email or phone"
-                value={userEmail}
-                onChange={e => {
-                  setUserEmail(e.target.value);
-                  checkInactivity();
-                }}
-              />
-              <div className="login-input-forgot-email">
-                <p onClick={() => handleForgotEmail()}>Forgot email?</p>
-              </div>
-            </div>
-            <div className="learn-more-container">
-              <p>Not your computer? Use Guest mode to sign in privately.</p>
-              <Link to="#">Learn more</Link>
-            </div>
-            <div className="login-button-container">
-              <Link to="#">Create account</Link>
-              <button onClick={() => nextStep()}>Next</button>
-            </div>
-          </>
+          <EmailSection
+            nextStep={nextStep}
+            checkInactivity={checkInactivity}
+            handleForgotEmail={handleForgotEmail}
+          />
         )}
         {/* End of Email Section */}
 
         {/* Password Section */}
         {step === 1 && (
-          <>
-            <h2>Welcome</h2>
-            <div className="email-container" onClick={() => prevStep()}>
-              <CgProfile />
-              <p>{userEmail}</p>
-              <RiArrowDownSLine />
-            </div>
-            <div className="password-input-container">
-              <input
-                className="password-text"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                required
-                value={userPassword}
-                onChange={e => {
-                  setUserPassword(e.target.value);
-                  checkInactivity();
-                }}
-              />
-              <div className="label-container">
-                <label>
-                  <input
-                    type="checkbox"
-                    value={showPassword}
-                    placeholder="Show Password"
-                    onChange={e => handleCheckBox(e)}
-                  />
-                  Show Password
-                </label>
-              </div>
-            </div>
-            <div className="login-button-container">
-              <p onClick={() => setStep(7)}>Forgot password?</p>
-              <button onClick={() => nextStep()}>Next</button>
-            </div>
-          </>
+          <PasswordSection
+            prevStep={prevStep}
+            nextStep={nextStep}
+            checkInactivity={checkInactivity}
+            setStep={setStep}
+            handleCheckBox={handleCheckBox}
+            showPassword={showPassword}
+          />
         )}
         {/* End of Password Section */}
 
         {/* Forgot E-mail Section */}
         {step === 2 && (
-          <>
-            <h2>Find your email</h2>
-            <p>Enter your phone number or recovery email</p>
-            <div className="forgot-email-input">
-              <input
-                type="text"
-                required
-                placeholder="Phone number or email"
-                value={recoveryDetails}
-                onChange={e => {
-                  setRecoveryDetails(e.target.value);
-                  checkInactivity();
-                }}
-              />
-              <div className="forgot-email-button">
-                <button onClick={() => handleForgotEmail()}>Next</button>
-              </div>
-            </div>
-          </>
+          <RecoverySection
+            handleForgotEmail={handleForgotEmail}
+            setRecoveryDetails={setRecoveryDetails}
+            checkInactivity={checkInactivity}
+            recoveryDetails={recoveryDetails}
+          />
         )}
         {/* End of Forgot Email Section */}
 
         {/* Name Section */}
         {step === 3 && (
-          <>
-            <h2>What’s your name?</h2>
-            <p>Enter the name on your Google Account</p>
-
-            <div className="name-section-container">
-              <input
-                className="password-text"
-                type="text"
-                placeholder="First name"
-                required
-                value={firstName}
-                onChange={e => {
-                  setFirstName(e.target.value);
-                  checkInactivity();
-                }}
-              />
-
-              <input
-                className="password-text"
-                type="text"
-                placeholder="Last name"
-                required
-                value={lastName}
-                onChange={e => {
-                  setLastName(e.target.value);
-                  checkInactivity();
-                }}
-              />
-            </div>
-            <div className="name-section-button">
-              <button onClick={() => nextStep()}>Next</button>
-            </div>
-          </>
+          <NameSection nextStep={nextStep} checkInactivity={checkInactivity} />
         )}
         {/* End of Name Section */}
 
         {/* When inactive notification */}
-        {step === 4 && (
-          <>
-            <div className="inactive-container-1">
-              <h3>You're not signed in</h3>
-              <p>Your session ended because there was no activity.</p>
-              <p>Try signing in again.</p>
-            </div>
-            <div className="inactive-container-2">
-              <button onClick={() => setStep(0)}>Try again</button>
-            </div>
-          </>
-        )}
+        {step === 4 && <InactiveNotification setStep={setStep} />}
         {/* End of Inactive Section */}
 
         {step === 5 && <AccountNotFound setStep={setStep} />}
@@ -280,88 +185,43 @@ export default function LoginPage() {
           </>
         )}
         {/* End of Something went wrong */}
+
         {/* Forgot Password */}
         {step === 7 && (
-          <>
-            <h2>Account Recovery</h2>
-            <div className="email-container" onClick={() => setStep(0)}>
-              <CgProfile />
-              <p>{userEmail}</p>
-              <RiArrowDownSLine />
-            </div>
-            <p>
-              Enter the last password you remember using with this Google
-              Account
-            </p>
-            <div className="password-input-container">
-              <input
-                className="password-text"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter last password"
-                required
-                value={passwordRecovery}
-                onChange={e => {
-                  setPasswordRecovery(e.target.value);
-                  checkInactivity();
-                }}
-              />
-              <div className="label-container">
-                <label>
-                  <input
-                    type="checkbox"
-                    value={showPassword}
-                    placeholder="Show Password"
-                    onChange={e => handleCheckBox(e)}
-                  />
-                  Show Password
-                </label>
-              </div>
-            </div>
-            <div className="login-button-container">
-              <Link to="#">Try another way</Link>
-              <button onClick={() => nextStep()}>Next</button>
-            </div>
-          </>
+          <ForgotPassword
+            setStep={setStep}
+            checkInactivity={checkInactivity}
+            passwordRecovery={passwordRecovery}
+            setPasswordRecovery={setPasswordRecovery}
+            nextStep={nextStep}
+            showPassword={showPassword}
+            handleCheckBox={handleCheckBox}
+          />
         )}
         {step === 8 && (
-          <>
-            <h2>Account Recovery</h2>
-            <p>This helps show that this account really belongs to you</p>
-            <div className="email-container" onClick={() => setStep(0)}>
-              <CgProfile />
-              <p>{userEmail}</p>
-              <RiArrowDownSLine />
-            </div>
-            <div className="random-number">
-              <p>{randomNumber}</p>
-            </div>
-            <div className="check-phone-1">
-              <p>Check your phone</p>
-            </div>
-            <div className="check-phone-2">
-              <p>
-                Google sent a notification to your phone. Tap{" "}
-                <strong>Yes</strong> on the notification, then tap{" "}
-                <strong>{randomNumber}</strong> on your phone to verify it’s
-                you.
-              </p>
-            </div>
-            <div className="forgot-password-buttons">
-              <button>Resend it</button>
-              <button>I don't have my phone</button>
-            </div>
-          </>
+          <ForgotPasswordVerification
+            randomNumber={randomNumber}
+            setStep={setStep}
+          />
         )}
         {/* End of Forgot password */}
       </div>
+
+      {/* Footer */}
       <div className="login-footer">
         <div className="supported-languages">
           <SelectLanguage />
         </div>
         <div className="login-footer-2">
-          <Link to="#">Help</Link>
-          <Link to="#">Privacy</Link>
-          <Link to="#">Terms</Link>
+          <Link to="#" className="login-footer-2-a">
+            Help
+          </Link>
+          <Link to="#" className="login-footer-2-a">
+            Privacy
+          </Link>
+          <Link to="#" className="login-footer-2-a">
+            Terms
+          </Link>
         </div>
       </div>
     </div>

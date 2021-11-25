@@ -25,8 +25,12 @@ export default function Home() {
     <div className="home-container">
       <div className="home-div-top">
         <div className="home-div-top-right">
-          <Link to="/">Gmail</Link>
-          <Link to="/">Images</Link>
+          <Link to="/" className="home-link">
+            Gmail
+          </Link>
+          <Link to="/" className="home-link">
+            Images
+          </Link>
           <CgMenuGridO />
           {signedIn ? (
             <div
@@ -35,7 +39,7 @@ export default function Home() {
               <img src={profileIMG} alt="profile" />
             </div>
           ) : (
-            <Link to="/signin" className="login-button">
+            <Link to="/signin" className="login-button home-link">
               Sign In
             </Link>
           )}
@@ -72,6 +76,7 @@ export default function Home() {
             <button className="google-search-button">
               {searchText ? (
                 <Link
+                  className="search-button-link"
                   to="/search/"
                   onClick={() =>
                     localStorage.setItem("clone-search-query", searchText)
@@ -86,29 +91,53 @@ export default function Home() {
           </div>
         </div>
         <div className="languages-div">
-          <p>Google offered in: </p>
-          <Link to="/">Português (Portugal)</Link>
-          <Link to="/">Hausa</Link>
-          <Link to="/">Akan</Link>
-          <Link to="/">Ewe</Link>
-          <Link to="/">Ga</Link>
+          <p className="languages-div-p">Google offered in: </p>
+          <Link to="/" className="languages-div-a">
+            Português (Portugal)
+          </Link>
+          <Link to="/" className="languages-div-a">
+            Hausa
+          </Link>
+          <Link to="/" className="languages-div-a">
+            Akan
+          </Link>
+          <Link to="/" className="languages-div-a">
+            Ewe
+          </Link>
+          <Link to="/" className="languages-div-a">
+            Ga
+          </Link>
         </div>
       </div>
       <div className="home-div-bottom">
         <div className="country-div">
-          <p>Ghana</p>
+          <p className="country-div-p">Ghana</p>
         </div>
         <div className="info-section">
           <div className="info-section-1">
-            <Link to="/">About</Link>
-            <Link to="/">Advertising</Link>
-            <Link to="/">Business</Link>
-            <Link to="/">How Search works</Link>
+            <Link to="/" className="info-section-a info-section-1-a">
+              About
+            </Link>
+            <Link to="/" className="info-section-a info-section-1-a">
+              Advertising
+            </Link>
+            <Link to="/" className="info-section-a info-section-1-a">
+              Business
+            </Link>
+            <Link to="/" className="info-section-a info-section-1-a">
+              How Search works
+            </Link>
           </div>
           <div className="info-section-2">
-            <Link to="/">Privacy</Link>
-            <Link to="/">Terms</Link>
-            <Link to="/">Settings</Link>
+            <Link to="/" className="info-section-a info-section-2-a">
+              Privacy
+            </Link>
+            <Link to="/" className="info-section-a info-section-2-a">
+              Terms
+            </Link>
+            <Link to="/" className="info-section-a info-section-2-a">
+              Settings
+            </Link>
           </div>
         </div>
       </div>
