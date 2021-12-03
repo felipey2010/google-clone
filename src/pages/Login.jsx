@@ -13,6 +13,7 @@ import ForgotPassword from "../components/ForgotPassword";
 import ForgotPasswordVerification from "../components/ForgotPasswordVerification";
 import InactiveNotification from "../components/InactiveNotification";
 import RecoverySection from "../components/RecoverySection";
+import CreateAccout from "../components/CreateAccount";
 
 export default function LoginPage() {
   const [loadingBar, setLoadingBar] = useState(false);
@@ -21,6 +22,7 @@ export default function LoginPage() {
   const [recoveryDetails, setRecoveryDetails] = useState("");
   const [passwordRecovery, setPasswordRecovery] = useState("");
   const [randomNumber, setRandomNumber] = useState(0);
+  const [accountStep, setAccountStep] = useState(1);
 
   const { userEmail, userPassword, setUserEmail, setUserPassword } =
     useContext(AppContext);
@@ -33,7 +35,8 @@ export default function LoginPage() {
   Step 4 - Inactivity notification
   Step 5 - Account Not Found
   Step 6 - Something went wrong
-  Step 7 - Forgot password
+  Step 7 & 8 - Forgot password
+  Step 9 - Create Account (For myself)
   */
 
   function nextStep() {
@@ -129,9 +132,13 @@ export default function LoginPage() {
         {/* Email Section */}
         {step === 0 && (
           <EmailSection
+            setStep={setStep}
             nextStep={nextStep}
             checkInactivity={checkInactivity}
             handleForgotEmail={handleForgotEmail}
+            setAccountStep={setAccountStep}
+            accountStep={accountStep}
+            loadProgressBar={loadProgressBar}
           />
         )}
         {/* End of Email Section */}
@@ -202,9 +209,19 @@ export default function LoginPage() {
           <ForgotPasswordVerification
             randomNumber={randomNumber}
             setStep={setStep}
+            checkInactivity={checkInactivity}
           />
         )}
         {/* End of Forgot password */}
+
+        {step === 9 && (
+          <CreateAccout
+            setStep={setStep}
+            accountStep={accountStep}
+            checkInactivity={checkInactivity}
+            loadProgressBar={loadProgressBar}
+          />
+        )}
       </div>
 
       {/* Footer */}

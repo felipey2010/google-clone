@@ -17,10 +17,18 @@ import ShoppingPage from "./innerPages/shoppingPage";
 import MapsPage from "./innerPages/mapsPage";
 import FinancePage from "./innerPages/financePage";
 import BooksPage from "./innerPages/booksPage";
+import AppMenu from "../components/AppMenu";
 
 export default function SearchResult() {
-  const { searchText, clearText, setSearchText, signedIn, setSignedIn } =
-    useContext(AppContext);
+  const {
+    searchText,
+    clearText,
+    setSearchText,
+    signedIn,
+    setSignedIn,
+    appMenu,
+    setAppMenu,
+  } = useContext(AppContext);
   const [refreshPage, setRefreshPage] = useState(false);
   let navigate = useNavigate();
 
@@ -77,7 +85,7 @@ export default function SearchResult() {
             <IoSettingsOutline />
           </div>
           <div className="settings-icon-2">
-            <CgMenuGridO />
+            <CgMenuGridO onClick={() => setAppMenu(true)} />
           </div>
           {signedIn ? (
             <div
@@ -92,6 +100,13 @@ export default function SearchResult() {
           )}
         </div>
       </div>
+      {appMenu && (
+        <div
+          className="app-menu-container-2"
+          onMouseLeave={() => setAppMenu(false)}>
+          <AppMenu />
+        </div>
+      )}
       <div className="search-result-toolbar">
         <Toolbar />
         <div className="search-tool">

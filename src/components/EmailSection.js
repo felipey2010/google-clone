@@ -1,13 +1,19 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../utils/Context";
+import CreateAccountOptions from "./CreateAccountOptions";
 
 export default function EmailSection({
   checkInactivity,
   handleForgotEmail,
   nextStep,
+  setStep,
+  setAccountStep,
+  accountStep,
+  loadProgressBar,
 }) {
-  const { userEmail, setUserEmail } = useContext(AppContext);
+  const { userEmail, setUserEmail, activateOptions, setActivateOptions } =
+    useContext(AppContext);
   return (
     <>
       <h2>Sign in</h2>
@@ -34,10 +40,25 @@ export default function EmailSection({
         </Link>
       </div>
       <div className="login-button-container">
-        <Link to="#" className="login-button-container-a">
+        {activateOptions && (
+          <CreateAccountOptions
+            setStep={setStep}
+            setAccountStep={setAccountStep}
+            loadProgressBar={loadProgressBar}
+            checkInactivity={checkInactivity}
+            setActivateOptions={setActivateOptions}
+          />
+        )}
+        <p
+          className="login-button-container-p"
+          onClick={() => setActivateOptions(true)}>
           Create account
-        </Link>
-        <button onClick={() => nextStep()}>Next</button>
+        </p>
+        <button
+          onClick={() => nextStep()}
+          className="login-button-container-button">
+          Next
+        </button>
       </div>
     </>
   );

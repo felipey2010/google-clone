@@ -12,6 +12,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
 }
 
 .home-div-top-right {
@@ -31,6 +32,16 @@
   padding: 12px;
   font-size: 14px;
   font-weight: 400;
+}
+
+.home-div-top-right .hovered {
+  padding: 0;
+  padding-bottom: 1px;
+  border-bottom: 1px solid transparent;
+}
+
+.hovered:hover {
+  border-bottom: 1px solid var(--color);
 }
 
 .home-div-top-right .login-button {
@@ -57,6 +68,71 @@
 .home-div-top-right svg:hover {
   background-color: var(--hover-color);
   border-radius: 50%;
+}
+
+.app-menu-container {
+  position: absolute;
+  top: 65px;
+  right: 16px;
+  height: 350px;
+  width: 315px;
+  background-color: var(--hover-color);
+  z-index: 2;
+  box-shadow: -1px 2px 7px 0px #0c0303;
+  border-radius: 6px;
+  overflow-y: scroll;
+  transition: all 0.3s ease-in-out;
+}
+
+.app-grid {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.app-grid .grid-item {
+  width: 50px;
+  height: 74px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.app-grid .grid-item:hover {
+  background-color: #22232469;
+}
+
+.app-grid .grid-item .grid-item-p {
+  font-size: var(--text-size-14);
+  color: var(--text-color);
+  margin: 12px 0;
+}
+
+.app-grid .grid-item .grid-item-icon {
+  height: 42px;
+  width: 42px;
+}
+
+.app-menu-container::-webkit-scrollbar {
+  border-radius: 6px;
+  width: 12px;
+}
+
+.app-menu-container::-webkit-scrollbar-track {
+  background: var(--hover-color);
+  border-radius: 6px;
+}
+
+.app-menu-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
 }
 
 .profile-image {

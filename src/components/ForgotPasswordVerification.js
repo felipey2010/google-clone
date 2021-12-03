@@ -3,13 +3,22 @@ import { AppContext } from "../utils/Context";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 
-export default function ForgotPasswordVerification({ randomNumber, setStep }) {
+export default function ForgotPasswordVerification({
+  randomNumber,
+  setStep,
+  checkInactivity,
+}) {
   const { userEmail } = useContext(AppContext);
   return (
     <>
       <h2>Account Recovery</h2>
       <p>This helps show that this account really belongs to you</p>
-      <div className="email-container" onClick={() => setStep(0)}>
+      <div
+        className="email-container"
+        onClick={() => {
+          checkInactivity();
+          setStep(0);
+        }}>
         <CgProfile />
         <p>{userEmail}</p>
         <RiArrowDownSLine />

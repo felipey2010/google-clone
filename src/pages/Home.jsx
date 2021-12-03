@@ -8,10 +8,18 @@ import { BiMicrophone } from "react-icons/bi";
 import { MdClear } from "react-icons/md";
 import { AppContext } from "../utils/Context";
 import CookieNotification from "../components/CookieNotification";
+import AppMenu from "../components/AppMenu";
 
 export default function Home() {
-  const { clearText, searchText, setSearchText, signedIn, setSignedIn } =
-    useContext(AppContext);
+  const {
+    clearText,
+    searchText,
+    setSearchText,
+    signedIn,
+    setSignedIn,
+    appMenu,
+    setAppMenu,
+  } = useContext(AppContext);
   let history = useNavigate();
 
   function handleEnterKey(e) {
@@ -25,13 +33,13 @@ export default function Home() {
     <div className="home-container">
       <div className="home-div-top">
         <div className="home-div-top-right">
-          <Link to="/" className="home-link">
+          <Link to="/" className="home-link hovered">
             Gmail
           </Link>
-          <Link to="/" className="home-link">
+          <Link to="/" className="home-link hovered">
             Images
           </Link>
-          <CgMenuGridO />
+          <CgMenuGridO onClick={() => setAppMenu(!appMenu)} />
           {signedIn ? (
             <div
               className="profile-image"
@@ -45,6 +53,13 @@ export default function Home() {
           )}
         </div>
       </div>
+      {appMenu && (
+        <div
+          className="app-menu-container"
+          onMouseLeave={() => setAppMenu(false)}>
+          <AppMenu />
+        </div>
+      )}
       <div className="home-div-middle">
         <div className="google-logo">
           <img src={GoogleLogo} alt="google logo" />

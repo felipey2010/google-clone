@@ -5,6 +5,26 @@
   flex-direction: column;
   color: var(--color);
   overflow-y: scroll;
+  position: relative;
+}
+
+.search-result-div::-webkit-scrollbar {
+  border-radius: 6px;
+  width: 12px;
+}
+
+.search-result-div::-webkit-scrollbar-track {
+  background: rgb(97, 93, 93);
+  border-radius: 6px;
+}
+
+.search-result-div::-webkit-scrollbar-thumb {
+  background: rgb(75, 75, 75);
+  border-radius: 6px;
+}
+
+.search-result-div::-webkit-scrollbar-thumb:hover {
+  background: rgb(156, 156, 156);
 }
 
 .search-result-header {
@@ -251,4 +271,69 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.app-menu-container-2 {
+  position: absolute;
+  top: 82px;
+  right: 16px;
+  height: 350px;
+  width: 315px;
+  background-color: var(--hover-color);
+  z-index: 2;
+  box-shadow: -1px 2px 7px 0px #0c0303;
+  border-radius: 6px;
+  overflow-y: scroll;
+  transition: all 0.3s ease-in-out;
+}
+
+.app-menu-container-2::-webkit-scrollbar {
+  border-radius: 6px;
+  width: 12px;
+}
+
+.app-menu-container-2::-webkit-scrollbar-track {
+  background: var(--hover-color);
+  border-radius: 6px;
+}
+
+.app-menu-container-2::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+.app-grid {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.app-grid .grid-item {
+  width: 50px;
+  height: 74px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.app-grid .grid-item:hover {
+  background-color: #22232469;
+}
+
+.app-grid .grid-item .grid-item-p {
+  font-size: var(--text-size-14);
+  color: var(--text-color);
+  margin: 12px 0;
+}
+
+.app-grid .grid-item .grid-item-icon {
+  height: 42px;
+  width: 42px;
 }
